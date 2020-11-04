@@ -1,0 +1,6 @@
+<aura:component implements="lightning:availableForFlowScreens">
+    <aura:attribute name="greeting" type="String" access="global" />
+    <aura:attribute name="subject" type="String" access="global" />
+ 
+   vitya loh
+</aura:component>
