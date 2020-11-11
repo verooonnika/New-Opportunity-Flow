@@ -1,0 +1,11 @@
+<aura:component  implements="force:lightningQuickAction,lightning:availableForFlowScreens,lightning:availableForFlowActions">
+    
+    <aura:attribute name="insertedOppId" type="String"/>
+    
+    <div class="slds-align_absolute-center">
+        <div class="slds-p-bottom_large">
+            Opportunity was successfully created!
+        </div>
+        <lightning:button label="View Record Details" onclick="{!c.redirectToRecord}"/>
+    </div>
+</aura:component>

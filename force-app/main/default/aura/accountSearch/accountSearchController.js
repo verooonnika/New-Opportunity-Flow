@@ -20,7 +20,10 @@
     },
     
     handleChooseAccount: function(component, event, helper){
+        var row = event.getParam('row');
+        component.set("v.selectedAccount", row);
+        console.debug(component.get("v.selectedAccount"));
         component.set("v.isNewAccount", false);
-        helper.nextFlowScreen(component,event, helper);
+        helper.nextFlowScreen(component, event, helper);
     }
 })
