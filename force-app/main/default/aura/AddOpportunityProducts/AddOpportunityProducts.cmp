@@ -5,7 +5,6 @@
     <aura:attribute name="products" type="Map[]"/>
     <aura:attribute name="productColumns" type="Map[]"/>
     <aura:attribute name="opportunityProducts" type="OpportunityLineItem[]"/>
-    <aura:attribute name="opportunityProductsView" type="OpportunityLineItem[]"/>
     <aura:attribute name="oppProductColumns" type="Map[]"/>
     <aura:attribute name="isTableEmpty" type="Boolean" default="true"/>
     
@@ -21,10 +20,10 @@
     
     <div class="slds-grid slds-gutters slds-p-bottom_small">
         <div class="slds-col slds-size_1-of-2">
-            <lightning:input aura:id="quantity" type="number" label="Quantity" required="true" />
+            <lightning:input aura:id="quantity" type="number" label="Quantity" required="true" min="1" max="1000" />
         </div>
         <div class="slds-col slds-size_1-of-2">
-            <lightning:input aura:id="price" type="number" label="Sales Price" formatter="currency" step="0.01" required="true"/>        
+            <lightning:input aura:id="price" type="number" label="Sales Price" formatter="currency" step="0.01" required="true" min="1" max="1000000"/>        
         </div>
     </div>
     
@@ -35,7 +34,7 @@
         <aura:set attribute="else">
             <lightning:card title="Opportunity Products" iconName="standard:product">
                 <lightning:datatable
-                                     data="{!v.opportunityProductsView}"
+                                     data="{!v.opportunityProducts}"
                                      columns="{!v.oppProductColumns}"
                                      keyField="Id"
                                      hideCheckboxColumn="true"/>

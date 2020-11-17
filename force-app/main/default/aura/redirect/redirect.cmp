@@ -2,10 +2,10 @@
     
     <aura:attribute name="insertedOppId" type="String"/>
     
-    <div class="slds-align_absolute-center">
-        <div class="slds-p-bottom_large">
+    <div class="slds-align_absolute-center slds-p-bottom_large">
             Opportunity was successfully created!
-        </div>
-        <lightning:button label="View Record Details" onclick="{!c.redirectToRecord}"/>
     </div>
+
+    <lightning:button label="View Record Details" onclick="{!c.redirectToRecord}" class="slds-align_absolute-center"/>
+
 </aura:component>

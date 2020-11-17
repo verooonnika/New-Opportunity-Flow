@@ -7,7 +7,12 @@
                 var row = rows[i];                
                 row.ProductName = row.Product2.Name;
             }
+           
             component.set("v.products", rows);
+            
+            /*var selectedRowsIds = rows[0].Id;
+            component = component.find("productsTable");
+            component.set("v.selectedRows", selectedRowsIds);*/
         });
         
         $A.enqueueAction(action);
@@ -24,7 +29,7 @@
     
     initOpportunityProductsTable: function(component){
         var cols = [
-            {'label': 'Product', 'fieldName': 'ProductName','type': 'text'},
+            {'label': 'Product', 'fieldName': 'Name','type': 'text'},
             {'label': 'Quantity','fieldName': 'Quantity','type': 'text'},
             {'label': 'Total Price','fieldName': 'TotalPrice','type': 'currency'}
         ];
@@ -41,15 +46,8 @@
         productItem.Quantity = quantity;
         productItem.PricebookEntryId = selectedProduct.Id;
         productItem.TotalPrice = price * quantity;
+        productItem.Name = selectedProduct.ProductName;
         
         component.set("v.product", productItem);
-        this.updateTableData(component, productItem, selectedProduct);
-    },
-    
-    updateTableData: function(component, productItem, selectedProduct){
-        var tableData = component.get("v.opportunityProductsView");
-        productItem.ProductName = selectedProduct.ProductName;
-        tableData.push(productItem);
-        component.set("v.opportunityProductsView", tableData);
     }
 })
