@@ -1,0 +1,4 @@
+<design:component >
+    <design:attribute name="selectedAccount" label="Account"/>
+    <design:attribute name="contactRoles" label="Opportunity Contact Roles"/>
+</design:component>

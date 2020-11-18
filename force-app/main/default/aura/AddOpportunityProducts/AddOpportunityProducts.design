@@ -1,3 +1,4 @@
 <design:component>
      <design:attribute name="opportunityProducts" label="Opportunity Products"/>
+     <design:attribute name="priceBookId" label="PriceBook"/>
 </design:component>

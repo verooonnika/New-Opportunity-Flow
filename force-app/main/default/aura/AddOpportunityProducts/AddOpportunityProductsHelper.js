@@ -1,6 +1,9 @@
 ({
     getAllProducts: function(component) {
         var action = component.get("c.getAllProducts");
+        action.setParams({
+            priceBook : component.get("v.priceBookId")
+        });
         action.setCallback(this, function(response) {
             var rows = response.getReturnValue();
             for (var i = 0; i < rows.length; i++) {
