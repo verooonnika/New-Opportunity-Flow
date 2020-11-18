@@ -7,6 +7,10 @@
     <aura:attribute name="opportunityProducts" type="OpportunityLineItem[]"/>
     <aura:attribute name="oppProductColumns" type="Map[]"/>
     <aura:attribute name="isTableEmpty" type="Boolean" default="true"/>
+    <aura:attribute name="showError" type="Boolean" default="false"/>
+    <aura:attribute name="message" type="String"/>
+
+
     
     <lightning:card title="Products" iconName="standard:product">
         <lightning:datatable
@@ -26,8 +30,14 @@
             <lightning:input aura:id="price" type="number" label="Sales Price" formatter="currency" step="0.01" required="true" min="1" max="1000000"/>        
         </div>
     </div>
+
+    <aura:if isTrue="{!v.showError}">
+        <div class="slds-align_absolute-center slds-text-color_error">
+            {!v.message}
+        </div>
+    </aura:if>
     
-    <lightning:button label="Add to Opportunity products" class="slds-align_absolute-center" onclick="{!c.addItem}"/>
+    <lightning:button label="Add to Opportunity products" class="slds-align_absolute-center" onclick="{!c.handleSaveProduct}"/>
     
     <aura:if isTrue="{!v.isTableEmpty}">
         No products added

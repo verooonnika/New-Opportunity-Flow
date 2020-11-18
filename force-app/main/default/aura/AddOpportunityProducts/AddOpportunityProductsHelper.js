@@ -49,5 +49,14 @@
         productItem.Name = selectedProduct.ProductName;
         
         component.set("v.product", productItem);
+    }, 
+
+    addItem: function(component, event, helper){
+        this.createOpportunityProduct(component, event, helper);
+        var productItem = component.get("v.product");
+        var products = component.get("v.opportunityProducts");
+        products.push(productItem);
+        component.set("v.opportunityProducts", products);
+        component.set("v.isTableEmpty", false);
     }
 })
