@@ -31,7 +31,7 @@
         var cols = [
             {'label': 'Product', 'fieldName': 'Name','type': 'text'},
             {'label': 'Quantity','fieldName': 'Quantity','type': 'text'},
-            {'label': 'Total Price','fieldName': 'TotalPrice','type': 'currency'}
+            {'label': 'Unit Price','fieldName': 'UnitPrice','type': 'currency'}
         ];
         component.set("v.oppProductColumns", cols);
     }, 
@@ -45,7 +45,7 @@
         
         productItem.Quantity = quantity;
         productItem.PricebookEntryId = selectedProduct.Id;
-        productItem.TotalPrice = price * quantity;
+        productItem.UnitPrice = price;
         productItem.Name = selectedProduct.ProductName;
         
         component.set("v.product", productItem);
