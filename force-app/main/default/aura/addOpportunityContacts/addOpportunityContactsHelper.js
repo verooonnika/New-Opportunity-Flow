@@ -39,38 +39,49 @@
     
     initContactRolesTable: function(component){
         var cols = [
-            {'label': 'Contact', 'fieldName': 'ContactId','type': 'text'},
+            {'label': 'Contact', 'fieldName': 'ContactName','type': 'text'},
             {'label': 'Role','fieldName': 'Role','type': 'text'}
         ];
         component.set("v.contactRoleColumns", cols);
     }, 
     
-    createContactRole: function(component, event, helper){
+    createContactRole: function(component, event, helper, selectedContact){
         var contactItem = {sObjectType: "OpportunityContactRole"};
-        var selectedContacts = component.find("contactsTable").getSelectedRows();
-        var selectedContact = selectedContacts[0];
+        
         var role = component.find("role").get("v.value");
         
         contactItem.ContactId = selectedContact.Id;
         contactItem.Role = role;
         
         component.set("v.contactRole", contactItem);
-        this.updatePrimarySelectList(component, contactItem);
+       
     }, 
 
     addItem: function(component, event, helper){
-        this.createContactRole(component, event, helper);
+        var selectedContacts = component.find("contactsTable").getSelectedRows();
+        var selectedContact = selectedContacts[0];
+
+        this.createContactRole(component, event, helper, selectedContact);
         var contactItem = component.get("v.contactRole");
         var contactRoles = component.get("v.contactRoles");
+
         contactRoles.push(contactItem);
         component.set("v.contactRoles", contactRoles);
+
+        var contactRolesView = component.get("v.contactRolesView");
+        contactItem.ContactName = selectedContact.Name;
+        contactRolesView.push(contactItem);
+        component.set("v.contactRolesView", contactRolesView);
+
+        this.updatePrimarySelectList(component, contactItem);
+
         component.set("v.isTableEmpty", false);
     }, 
 
     updatePrimarySelectList: function(component, contactItem){
         var primaryContactList = component.get("v.primaryContactSelectList");
         primaryContactList.push({
-            "label": contactItem.ContactId,
+            "label": contactItem.ContactName,
             "value": contactItem.ContactId
         });
         component.set("v.primaryContactSelectList", primaryContactList);

@@ -6,6 +6,7 @@
     <aura:attribute name="contacts" type="Contact[]"/>
     <aura:attribute name="contactColumns" type="Map[]"/>
     <aura:attribute name="contactRoles" type="OpportunityContactRole[]"/>
+    <aura:attribute name="contactRolesView" type="OpportunityContactRole[]"/>
     <aura:attribute name="contactRoleColumns" type="Map[]"/>
     <aura:attribute name="isTableEmpty" type="Boolean" default="true"/>
     <aura:attribute name="roles" type="List"/>
@@ -38,7 +39,7 @@
         <aura:set attribute="else">
             <lightning:card title="Opportunity Contact Roles" iconName="standard:product">
                 <lightning:datatable
-                                     data="{!v.contactRoles}"
+                                     data="{!v.contactRolesView}"
                                      columns="{!v.contactRoleColumns}"
                                      keyField="Id"
                                      hideCheckboxColumn="true"/>
