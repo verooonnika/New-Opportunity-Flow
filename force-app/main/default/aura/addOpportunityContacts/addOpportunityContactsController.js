@@ -23,6 +23,7 @@
     },
 
     changePrimaryContact: function(component, event, helper){
+        component.set("v.showError", false);
         helper.selectPrimaryContact(component, event);
     }
 })

@@ -12,7 +12,8 @@
     <aura:attribute name="roles" type="List"/>
     <aura:attribute name="showError" type="Boolean" default="false"/>
     <aura:attribute name="message" type="String"/>
-    <aura:attribute name="primaryContactSelectList" type="List"/>
+    <aura:attribute name="primaryContactSelectList" type="List" default="[{label: 'None', value: 'none'}]"/>
+    <aura:attribute name="defaultRole" type="Object"/>
 
     <lightning:card title="Contacts" iconName="standard:product">
         <lightning:datatable
@@ -24,7 +25,7 @@
                              onrowselection="{!c.selectContact}"/>
     </lightning:card>
    
-           <lightning:combobox aura:id="role" label="Role" options="{!v.roles}"/>
+           <lightning:combobox aura:id="role" label="Role" options="{!v.roles}" value="{!v.defaultRole}" required="true"/>
 
     <aura:if isTrue="{!v.showError}">
         <div class="slds-align_absolute-center slds-text-color_error">
@@ -32,8 +33,10 @@
         </div>
     </aura:if>
     
-    <lightning:button label="Add to Opportunity contacts" class="slds-align_absolute-center" onclick="{!c.handleSaveContact}"/>
-    
+    <div class="slds-p-top_small">
+        <lightning:button label="Add to Opportunity contacts" class="slds-align_absolute-center" onclick="{!c.handleSaveContact}"/>
+    </div>
+
     <aura:if isTrue="{!v.isTableEmpty}">
         No contacts added
         <aura:set attribute="else">

@@ -16,6 +16,7 @@
         var action = component.get("c.getContactRoleOptions");
         action.setCallback(this, function(response) {
             var roles = [];
+            var defaultRole = response.getReturnValue()[0];
             response.getReturnValue().forEach(role => {
                 var item = {
                     "label": role,
@@ -24,7 +25,8 @@
                 roles.push(item); 
             });
             component.set("v.roles", roles);
-        });
+            component.set("v.defaultRole", defaultRole);
+       });
         
         $A.enqueueAction(action);
     },
@@ -54,7 +56,6 @@
         contactItem.Role = role;
         
         component.set("v.contactRole", contactItem);
-       
     }, 
 
     addItem: function(component, event, helper){
