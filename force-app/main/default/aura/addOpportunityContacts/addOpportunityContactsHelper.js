@@ -40,7 +40,6 @@
     initContactRolesTable: function(component){
         var cols = [
             {'label': 'Contact', 'fieldName': 'ContactId','type': 'text'},
-            {'label': 'Primary','fieldName': 'IsPrimary','type': 'checkbox'},
             {'label': 'Role','fieldName': 'Role','type': 'text'}
         ];
         component.set("v.contactRoleColumns", cols);
@@ -51,15 +50,12 @@
         var selectedContacts = component.find("contactsTable").getSelectedRows();
         var selectedContact = selectedContacts[0];
         var role = component.find("role").get("v.value");
-        var isPrimary = component.find("primary").get("v.checked");
         
         contactItem.ContactId = selectedContact.Id;
         contactItem.Role = role;
-        contactItem.IsPrimary = isPrimary;
-
-        console.debug(isPrimary);
         
         component.set("v.contactRole", contactItem);
+        this.updatePrimarySelectList(component, contactItem);
     }, 
 
     addItem: function(component, event, helper){
@@ -69,5 +65,26 @@
         contactRoles.push(contactItem);
         component.set("v.contactRoles", contactRoles);
         component.set("v.isTableEmpty", false);
-    } 
+    }, 
+
+    updatePrimarySelectList: function(component, contactItem){
+        var primaryContactList = component.get("v.primaryContactSelectList");
+        primaryContactList.push({
+            "label": contactItem.ContactId,
+            "value": contactItem.ContactId
+        });
+        component.set("v.primaryContactSelectList", primaryContactList);
+    },
+
+    selectPrimaryContact: function(component, event){
+        var selectedContact = event.getParam("value");
+        var contactRoles = component.get("v.contactRoles");
+        contactRoles.forEach(role => {
+            role.IsPrimary = false;
+            if(role.ContactId == selectedContact){
+                role.IsPrimary = true;
+            }
+        });
+        component.set("v.contactRoles", contactRoles);
+    }
 })

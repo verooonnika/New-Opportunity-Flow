@@ -11,7 +11,8 @@
     <aura:attribute name="roles" type="List"/>
     <aura:attribute name="showError" type="Boolean" default="false"/>
     <aura:attribute name="message" type="String"/>
-    
+    <aura:attribute name="primaryContactSelectList" type="List"/>
+
     <lightning:card title="Contacts" iconName="standard:product">
         <lightning:datatable
                              aura:id="contactsTable"
@@ -21,16 +22,8 @@
                              maxRowSelection="1"
                              onrowselection="{!c.selectContact}"/>
     </lightning:card>
-    
-    <div class="slds-grid slds-gutters slds-p-bottom_small">
-        <div class="slds-col slds-size_1-of-2">
-           <!-- <lightning:input aura:id="quantity" type="number" label="Quantity" required="true" min="1" max="1000" /> -->
+   
            <lightning:combobox aura:id="role" label="Role" options="{!v.roles}"/>
-        </div>
-        <div class="slds-col slds-size_1-of-2">
-            <lightning:input aura:id="primary" type="checkbox" label="Primary" disabled="false"/>
-        </div>
-    </div>
 
     <aura:if isTrue="{!v.showError}">
         <div class="slds-align_absolute-center slds-text-color_error">
@@ -50,6 +43,7 @@
                                      keyField="Id"
                                      hideCheckboxColumn="true"/>
             </lightning:card>
+            <lightning:combobox aura:id="primaryContact" label="Primary Contact (Optional)" options="{!v.primaryContactSelectList}" onchange="{!c.changePrimaryContact}"/>
         </aura:set>
     </aura:if>
 </aura:component>

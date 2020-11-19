@@ -20,5 +20,9 @@
     
     selectContact: function(component){
         component.set("v.showError", false);
-    } 
+    },
+
+    changePrimaryContact: function(component, event, helper){
+        helper.selectPrimaryContact(component, event);
+    }
 })
