@@ -66,6 +66,14 @@
         var contactItem = component.get("v.contactRole");
         var contactRoles = component.get("v.contactRoles");
 
+        contactRoles.forEach(contactRole => {
+            if(contactRole.ContactId == contactItem.ContactId){
+                component.set("v.showError", true);
+                component.set("v.message", 'Contact Role with this Contact already exists');
+                return;
+            }
+        });
+
         contactRoles.push(contactItem);
         component.set("v.contactRoles", contactRoles);
 
